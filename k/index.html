@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Doe's Portfolio</title>
+    <link rel="stylesheet" href="/css/style.css">
+  
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="active">
+        <div class="container split-section">
+            <div>
+                <h1>Welcome to My Portfolio</h1>
+                <p>Hi, I'm John Doe. I'm a passionate web developer creating amazing digital experiences.</p>
+            </div>
+            <div>
+                <img src="./imgs/114.png" alt="John Doe">
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container split-section">
+         <div>
+                <img src="./imgs/169.png" alt="John Doe">
+            </div>     
+             <div>
+                <h1>About Me</h1>
+                <p>I'm a creative problem-solver with a keen eye for design and a love for clean, efficient code. With over 5 years of experience in web development, I specialize in creating responsive, user-friendly websites that make a lasting impression.</p>
+            </div>
+         
+        </div>
+    </section>
+
+    <section id="portfolio">
+        <div class="container">
+            <h1>My Work</h1>
+            <div class="portfolio-items">
+                <div class="portfolio-item">
+                    <img src="./imgs/a.jpg" alt="Project 1">
+                    <h3>Project 1</h3>
+                    <p>A responsive e-commerce website</p>
+                </div>
+                <div class="portfolio-item">
+                    <img src="./imgs/j.avif" alt="Project 2">
+                    <h3>Project 2</h3>
+                    <p>An interactive data visualization dashboard</p>
+                </div>
+                <div class="portfolio-item">
+                    <img src="./imgs/re.jpg" alt="Project 3">
+                    <h3>Project 3</h3>
+                    <p>A mobile-first social media application</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h1>Get in Touch</h1>
+            <form>
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your Message" rows="5" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Social Media</h3>
+                    <ul>
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">GitHub</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Instagram</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li>Email: john@example.com</li>
+                        <li>Phone: (123) 456-7890</li>
+                        <li>Location: New York, NY</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 John Doe. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.7
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        navLinks.forEach(link => {
+                            if (link.getAttribute('href').slice(1) === entry.target.id) {
+                                link.style.color = '#f0f0f0';
+                                link.style.textShadow = '0 0 10px rgba(255, 255, 255, 0.5)';
+                            } else {
+                                link.style.color = '#fff';
+                                link.style.textShadow = 'none';
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href').slice(1);
+                    const targetSection = document.getElementById(targetId);
+                    targetSection.scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
